@@ -42,13 +42,8 @@ function App() {
 
     setTasks((currentTasks) => [
       ...currentTasks,
-      {
-        id: Date.now(),
-        text: trimmedText,
-        completed: false,
-      },
+      { id: Date.now(), text: trimmedText, completed: false },
     ])
-
     setNewTask('')
   }
 
@@ -94,6 +89,19 @@ function App() {
 
         <main className="task-panel">
           <h1>Inbox</h1>
+
+          <div className="filter-bar" role="tablist" aria-label="Task filters">
+            {['All', 'Active', 'Completed'].map((option) => (
+              <button
+                key={option}
+                type="button"
+                className={filter === option ? 'filter active' : 'filter'}
+                onClick={() => setFilter(option)}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
 
           <TaskForm
             value={newTask}
