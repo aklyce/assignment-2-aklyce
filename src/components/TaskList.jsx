@@ -1,0 +1,23 @@
+import React from 'react'
+import TaskItem from './TaskItem'
+
+function TaskList({ tasks, onToggle, onDelete }) {
+  if (!tasks.length) {
+    return <div className="empty-state">No tasks in this list.</div>
+  }
+
+  return (
+    <ul className="taskList">
+      {tasks.map((task) => (
+        <TaskItem
+          key={task.id}
+          task={task}
+          onToggle={onToggle}
+          onDelete={onDelete}
+        />
+      ))}
+    </ul>
+  )
+}
+
+export default TaskList
